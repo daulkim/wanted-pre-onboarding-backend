@@ -1,5 +1,6 @@
 package com.wanted.pre_onboarding.common;
 
+import com.wanted.pre_onboarding.common.exception.WantedException;
 import lombok.Getter;
 
 @Getter

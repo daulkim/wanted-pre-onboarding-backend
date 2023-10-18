@@ -1,4 +1,4 @@
-package com.wanted.pre_onboarding.common;
+package com.wanted.pre_onboarding.common.exception;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,6 +27,12 @@ public class WantedException extends RuntimeException {
         super(message, cause);
         this.code = code;
         this.field = cause.toString();
+    }
+
+    public WantedException(CodeMessage codeMessage) {
+        super(codeMessage.getMessage());
+        this.code = codeMessage.getCode();
+        this.message = codeMessage.getMessage();
     }
 
     public WantedException(Throwable cause) {

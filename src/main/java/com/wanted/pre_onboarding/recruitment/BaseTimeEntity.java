@@ -1,4 +1,4 @@
-package com.wanted.pre_onboarding.domain;
+package com.wanted.pre_onboarding.recruitment;
 
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
