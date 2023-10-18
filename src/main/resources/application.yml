@@ -5,8 +5,6 @@ spring:
     username: admin
     password: admin1008
   jpa:
-    hibernate:
-      ddl-auto: create
     defer-datasource-initialization: true
     properties:
       hibernate:
