@@ -29,6 +29,12 @@ public class BadResponseHandler {
                 .addObject(errorMessage);
     }
 
+    @ExceptionHandler(WantedException.class)
+    public Object WantedException(WantedException ex) {
+        log.error(ex.getMessage());
+        return Response.of(ex);
+    }
+
     @ExceptionHandler(Exception.class)
     public Object internalException(Exception ex) {
         log.error(ex.getMessage());
