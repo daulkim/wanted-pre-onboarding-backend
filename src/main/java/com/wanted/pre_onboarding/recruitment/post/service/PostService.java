@@ -6,10 +6,15 @@ import com.wanted.pre_onboarding.recruitment.exception.post.PostErrorMessage;
 import com.wanted.pre_onboarding.recruitment.exception.post.PostNotFoundException;
 import com.wanted.pre_onboarding.recruitment.post.domain.Post;
 import com.wanted.pre_onboarding.recruitment.post.domain.PostRepository;
+import com.wanted.pre_onboarding.recruitment.post.service.response.PostsResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 @Transactional
 @RequiredArgsConstructor
@@ -19,6 +24,14 @@ public class PostService {
 
     private final PostRepository postRepository;
     private final CompanyService companyService;
+
+    @Transactional(readOnly = true)
+    public List<PostsResponse> search(String keyword) {
+        return postRepository.findPostsByKeyword(keyword)
+                .stream()
+                .map(PostsResponse::postsOf)
+                .collect(toList());
+    }
 
     public void save(Long companyId,
                      String position,

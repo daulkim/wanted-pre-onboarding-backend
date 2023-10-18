@@ -15,6 +15,12 @@ public class PostController {
 
     private final PostService postService;
 
+    @GetMapping
+    public Response posts(@RequestParam(required = false) String keyword) {
+        return Response.of()
+                .addObject(postService.search(keyword));
+    }
+
     @PostMapping
     public Response register(@RequestBody @Valid PostCreateRequest request) {
         postService.save(
