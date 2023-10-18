@@ -8,13 +8,19 @@
 - MySQL 8.0
 - JPA
 - Docker
+- SwaggerUI
 
 ## 요구사항 분석 및 구현 과정
-#### 0. 환경설정
+#### 0. 기능 구현 전 설정
 
 Docker를 이용한 DB 연동
 
+[schema.sql](https://github.com/daulkim/wanted-pre-onboarding-backend/blob/main/src/main/resources/data.sql)를 통해 테이블 생성 & [data.sql](https://github.com/daulkim/wanted-pre-onboarding-backend/blob/main/src/main/resources/data.sql)를 통해 회사와 사용자 데이터틑 생성
+
 ControllerAdvice를 이용한 공통에러처리
+
+SwaggerUI를 통한 API 명세
+
 
 #### 1. 채용공고 등록
 회사는 아래 데이터와 같이 채용공고를 등록
