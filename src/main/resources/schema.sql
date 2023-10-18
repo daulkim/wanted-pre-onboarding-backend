@@ -1,7 +1,7 @@
+DROP TABLE IF EXISTS `user_application`;
 DROP TABLE IF EXISTS `post`;
 DROP TABLE IF EXISTS `user`;
 DROP TABLE IF EXISTS `company`;
-DROP TABLE IF EXISTS `user_application`;
 
 CREATE TABLE `company` (
     `id` bigint NOT NULL AUTO_INCREMENT,
@@ -41,5 +41,7 @@ CREATE TABLE `user_application` (
     `post_id` bigint DEFAULT NULL,
     `created_at` datetime(6) DEFAULT NULL,
     `modified_at` datetime(6) DEFAULT NULL,
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`),
+    CONSTRAINT FOREIGN KEY (`post_id`) REFERENCES `post` (`id`),
+    CONSTRAINT FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
