@@ -37,5 +37,11 @@ public class PostController {
                 request.getSkill());
         return Response.of();
     }
+
+    @DeleteMapping("/{id}")
+    public Response delete(@PathVariable Long id) {
+        postService.delete(id);
+        return Response.of();
+    }
 }
 

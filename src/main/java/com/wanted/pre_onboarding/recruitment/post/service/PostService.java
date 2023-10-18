@@ -39,6 +39,10 @@ public class PostService {
                 .update(position, reward, contents, skill);
     }
 
+    public void delete(Long postId) {
+        postRepository.delete(findById(postId));
+    }
+
     private Post findById(Long postId) {
         return postRepository.findById(postId)
                 .orElseThrow(() -> new PostNotFoundException(PostErrorMessage.NOT_EXIST));
