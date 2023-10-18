@@ -2,6 +2,8 @@ package com.wanted.pre_onboarding.recruitment.post.service;
 
 import com.wanted.pre_onboarding.recruitment.company.domain.Company;
 import com.wanted.pre_onboarding.recruitment.company.service.CompanyService;
+import com.wanted.pre_onboarding.recruitment.exception.post.PostErrorMessage;
+import com.wanted.pre_onboarding.recruitment.exception.post.PostNotFoundException;
 import com.wanted.pre_onboarding.recruitment.post.domain.Post;
 import com.wanted.pre_onboarding.recruitment.post.domain.PostRepository;
 import lombok.RequiredArgsConstructor;
@@ -26,5 +28,19 @@ public class PostService {
         Company company = companyService.findOne(companyId);
         Post post = Post.of(company, position, reward, contents, skill);
         postRepository.save(post);
+    }
+
+    public void update(Long postId,
+                       String position,
+                       Long reward,
+                       String contents,
+                       String skill) {
+        findById(postId)
+                .update(position, reward, contents, skill);
+    }
+
+    private Post findById(Long postId) {
+        return postRepository.findById(postId)
+                .orElseThrow(() -> new PostNotFoundException(PostErrorMessage.NOT_EXIST));
     }
 }

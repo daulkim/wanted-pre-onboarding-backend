@@ -36,4 +36,14 @@ public class Post extends BaseTimeEntity {
                 .skill(skill)
                 .build();
     }
+
+    public void update(String position,
+                       Long reward,
+                       String contents,
+                       String skill) {
+        this.position = position;
+        this.reward = reward;
+        this.contents = contents;
+        this.skill = skill;
+    }
 }
