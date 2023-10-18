@@ -21,6 +21,12 @@ public class PostController {
                 .addObject(postService.search(keyword));
     }
 
+    @GetMapping("/{id}")
+    public Response post(@PathVariable Long id) {
+        return Response.of()
+                .addObject(postService.findOne(id));
+    }
+
     @PostMapping
     public Response register(@RequestBody @Valid PostCreateRequest request) {
         postService.save(

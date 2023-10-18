@@ -6,6 +6,7 @@ import com.wanted.pre_onboarding.recruitment.exception.post.PostErrorMessage;
 import com.wanted.pre_onboarding.recruitment.exception.post.PostNotFoundException;
 import com.wanted.pre_onboarding.recruitment.post.domain.Post;
 import com.wanted.pre_onboarding.recruitment.post.domain.PostRepository;
+import com.wanted.pre_onboarding.recruitment.post.service.response.PostResponse;
 import com.wanted.pre_onboarding.recruitment.post.service.response.PostsResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
@@ -31,6 +33,16 @@ public class PostService {
                 .stream()
                 .map(PostsResponse::postsOf)
                 .collect(toList());
+    }
+
+    @Transactional(readOnly = true)
+    public PostResponse findOne(Long postId) {
+        Post post = findById(postId);
+        List<Long> companyPostIds = postRepository.findAllByIdNotAndCompanyId(postId, post.getCompany().getId())
+                .stream()
+                .map(Post::getId)
+                .collect(Collectors.toList());
+        return PostResponse.of(post, companyPostIds);
     }
 
     public void save(Long companyId,
