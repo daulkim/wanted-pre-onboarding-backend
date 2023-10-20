@@ -30,7 +30,7 @@ public class BadResponseHandler {
     }
 
     @ExceptionHandler(WantedException.class)
-    public Object WantedException(WantedException ex) {
+    public Object wantedException(WantedException ex) {
         log.error(ex.getMessage());
         return Response.of(ex);
     }
